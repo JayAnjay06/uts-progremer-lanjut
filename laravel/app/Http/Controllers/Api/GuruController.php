@@ -45,7 +45,6 @@ class GuruController extends Controller
                 return response()->json(['message' => 'Guru tidak ditemukan'], 404);
             }
     
-            // Validasi input
             $request->validate([
                 'nama' => 'sometimes|required|string|max:255',
                 'kontak' => 'sometimes|required|string|max:255',
