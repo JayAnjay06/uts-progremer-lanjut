@@ -1,15 +1,33 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Link } from "expo-router";
 
-export default function Index() {
+type Props = {};
+
+const WelcomeScreen = (props: Props) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View style={styles.container}>
+      <Text>Welcome Screen</Text>
+      <Link href={"/signin"} asChild>
+        <TouchableOpacity>
+          <Text>Go to SignIn Screen</Text>
+        </TouchableOpacity>
+      </Link>
+      <Link href={"/signup"} asChild>
+        <TouchableOpacity>
+          <Text>Go to SignUp Screen</Text>
+        </TouchableOpacity>
+      </Link>
     </View>
   );
-}
+};
+
+export default WelcomeScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
