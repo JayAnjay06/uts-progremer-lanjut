@@ -1,10 +1,12 @@
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { StatusBar } from 'react-native';
 import 'react-native-reanimated';
+import * as SplashScreen from 'expo-splash-screen';
 
 SplashScreen.preventAutoHideAsync();
+setTimeout(SplashScreen.hideAsync, 3000);
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -22,10 +24,13 @@ export default function RootLayout() {
   }
 
   return (
-      <Stack>
-        <Stack.Screen name="(Tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="signin" />
-        <Stack.Screen name="signup"  />
+    <>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(root)" options={{ headerShown: false }} />
       </Stack>
+      <StatusBar barStyle={"dark-content"}/>
+      </>
   );
 }
