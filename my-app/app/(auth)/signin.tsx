@@ -52,7 +52,7 @@ const SignInScreen = () => {
         <View style={styles.footer}>
           <TouchableOpacity
             onPress={() => {
-              router.push("/(tabs)/home");
+              router.push("/(root)/(tabs)/home");
             }}>
             <View style={styles.columSignIn}>
               <Text style={styles.textColum}>Sign In</Text>
