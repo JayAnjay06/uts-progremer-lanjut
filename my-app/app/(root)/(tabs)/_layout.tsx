@@ -17,15 +17,6 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="news"
-        options={{
-          title: "News",
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="newspaper-outline" size={24} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="history"
         options={{
           title: "History",
