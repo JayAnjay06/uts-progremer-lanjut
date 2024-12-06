@@ -10,6 +10,7 @@ import {
 import React, { useState } from "react";
 import imagePath from "@/constans/imagePath";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 const SignInScreen = () => {
   const [email, setEmail] = useState("");
@@ -22,46 +23,47 @@ const SignInScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.columHeader}>
-          <Image source={imagePath.logo} style={styles.imageHeader} />
-        </View>
-      </View>
-      <View style={styles.body}>
-        <View style={styles.columBody}>
-          <View>
-            <Text style={styles.textBody}>Sign In</Text>
-          </View>
-          <View style={styles.columInput}>
-          <View style={styles.input}>
+      <StatusBar style={"dark"} />
+      <Image source={imagePath.signIn} style={styles.ImageHeader} />
+      <Text style={styles.textHeader}>Sign In</Text>
+      <View>
+        <Text style={styles.textBody}>Silahkan Sign In untuk melenjutkan</Text>
+        <View style={styles.body}>
+          <View style={styles.bodyInput}>
             <TextInput
-              placeholder="Email Adress"
+              placeholder="Username"
               keyboardType="email-address"
               autoCapitalize="none"
               value={email}
               onChangeText={setEmail}
-              style={styles.textInputEmail}
+              style={styles.textInput}
             />
           </View>
-          <View style={styles.input}>
-          <TextInput
-              style={styles.textInputPw}
+          <View style={styles.bodyInput}>
+            <TextInput
+              style={styles.textInput}
               placeholder="Password"
               value={password}
               onChangeText={setPassword}
               secureTextEntry={true}
             />
           </View>
-            <TouchableOpacity>
-            <Text style={styles.textLupaPw}>Lupa Password</Text>
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity 
-          onPress={() => {
-            router.push("/(root)/(tabs)/home")
-          }}
-          style={styles.columSignIn}>
-            <Text style={styles.textSignIn}>Sign In</Text>
+        </View>
+        <View style={styles.footer}>
+          <TouchableOpacity
+            onPress={() => {
+              router.push("/(tabs)/home");
+            }}>
+            <View style={styles.columSignIn}>
+              <Text style={styles.textColum}>Sign In</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              router.navigate("/(auth)/signup");
+            }}
+            style={styles.columFooter}>
+            <Text style={styles.textFooter}>Buat Akun</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -74,196 +76,63 @@ export default SignInScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#3CB5F2",
   },
-  header: {
-    flex: 0.5,
-  },
-  columHeader: {
-    height: "100%",
+  ImageHeader: {
     width: "100%",
+    height: "40%",
+    marginTop: 50,
   },
-  imageHeader: {
-    height: 100,
-    width: 100,
-    marginVertical: "auto",
-    marginHorizontal: "auto",
-  },
-  body: {
-    flex: 1.5,
-  },
-  columBody: {
-    height: "100%",
-    width: "100%",
-    backgroundColor: "gray",
-    borderTopEndRadius: 100,
+  textHeader: {
+    fontSize: 36,
+    fontWeight: "500",
+    marginLeft: 20,
+    color: "#ffffff",
   },
   textBody: {
-    fontSize: 20,
-    fontWeight: "600",
-    textAlign: "center",
-    marginTop:20
+    fontSize: 16,
+    fontWeight: "100",
+    marginLeft: 20,
+    color: "#ffffff",
   },
-  columInput:{
-    marginTop:50
+  body: {
+    height: 200,
   },
-  input: {
+  bodyInput: {
+    width: "80%",
+    marginHorizontal: "auto",
+    borderWidth: 0.4,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  textInput: {
+    width: "70%",
+    marginHorizontal: "auto",
+    color: "gray",
+  },
+  footer: {
+    width: "100%",
+    height: "100%",
+  },
+  columSignIn: {
     height: 50,
     width: 300,
-    borderWidth: 1,
+    backgroundColor: "#ffffff",
+    marginHorizontal: "auto",
     borderRadius: 10,
-    marginHorizontal: "auto",
-    marginTop:20
   },
-  textInputEmail: {
+  textColum: {
+    fontSize: 16,
+    textAlign: "center",
     marginVertical: "auto",
-    marginHorizontal: "auto",
-    width: 250,
+    color: "#3CB5F2",
   },
-  textInputPw:{
-    marginVertical: "auto",
-    marginHorizontal: "auto",
-    width: 250,
+  columFooter: {
+    marginTop:40
   },
-  textLupaPw:{
-    marginTop:15,
-    fontSize:10,
-    marginLeft:"70%", 
-    color:"blue",
+  textFooter: {
+    fontSize: 13,
+    textAlign: "center",
+    color: "#ffffff",
   },
-  columSignIn:{
-    height:50,
-    width:100,
-    borderWidth:1,
-    marginTop:20,
-    marginHorizontal:"auto",
-    borderTopLeftRadius:20,
-    borderBottomRightRadius:20,
-  },
-  textSignIn:{
-    textAlign:"center",
-    marginVertical:"auto",
-    fontWeight:"500",
-    color:"white"
-  }
 });
-
-// import {
-//   StyleSheet,
-//   Text,
-//   TouchableOpacity,
-//   View,
-//   Image,
-//   TextInput,
-// } from "react-native";
-// import React, { useState } from "react";
-// import { Link, router } from "expo-router";
-
-// type Props = {};
-
-// const SignInScreen = (props: Props) => {
-
-//   return (
-//     <View style={styles.container}>
-//       <View>
-//         <View>
-//         </View>
-//         <View style={styles.columInput}>
-//           <View>
-//             <Text style={styles.textColum}>Sign In</Text>
-//           </View>
-//           <View style={styles.inputColum}>
-//             <TextInput
-//               style={styles.input}
-//               placeholder="Email"
-//               value={email}
-//               onChangeText={setEmail}
-
-//             />
-
-//           </View>
-//           <View style={styles.columNext}>
-//             <TouchableOpacity
-//               onPress={() => {
-//                 router.dismissAll();
-//                 router.push("/(root)/(tabs)/home");
-//               }}>
-//               <Text style={styles.textNext}>Sign In</Text>
-//             </TouchableOpacity>
-//           </View>
-//           <TouchableOpacity>
-// <Link href={"/signup"} asChild>
-// <TouchableOpacity style={styles.columSignUp}>
-//   <Text style={styles.textSignUp}>SignUp Disini</Text>
-// </TouchableOpacity>
-// </Link>
-// </TouchableOpacity>
-//         </View>
-//       </View>
-//     </View>
-//   );
-// };
-
-// export default SignInScreen;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//   },
-//   boxApp: {
-//     height: 100,
-//     width: 100,
-//     marginTop: 50,
-//     marginHorizontal: "auto",
-//   },
-//   columInput: {
-//     backgroundColor: "grey",
-//     height: "100%",
-//     marginTop: 25,
-//     borderTopLeftRadius: 50,
-//   },
-//   textColum: {
-//     fontSize: 30,
-//     fontWeight: "bold",
-//     fontFamily: "Open-sans",
-//     textAlign: "center",
-//     marginTop: 20,
-//   },
-//   inputColum: {
-//     marginTop: 50,
-//     width: 300,
-//     marginHorizontal: "auto",
-//   },
-//   input: {
-//     height: 50,
-//     borderColor: "#ccc",
-//     borderWidth: 1,
-//     borderRadius: 5,
-//     paddingHorizontal: 10,
-//     marginBottom: 15,
-//     marginTop: 20,
-//   },
-//   columNext:{
-//     height:50,
-//     width:200,
-//     borderWidth:1,
-//     borderRadius:20,
-//     marginHorizontal:"auto",
-//     marginTop:50
-//   },
-//   textNext:{
-//     fontSize:20,
-//     textAlign:'center',
-//     marginTop:10
-//   },
-//   columSignUp:{
-//     marginHorizontal: "auto",
-//     height:50,
-//     width:200,
-//     marginTop:70
-//   },
-//   textSignUp:{
-//     textAlign:'center',
-//     marginVertical:'auto',
-//     color:'blue'
-//   }
-// });
