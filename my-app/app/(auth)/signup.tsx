@@ -8,66 +8,108 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import imagePath from "@/constans/imagePath";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import Feather from "@expo/vector-icons/Feather";
 
 const SignUpScreen = () => {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
 
   const handleLogin = () => {
     console.log("Email:", email);
-    console.log("Phone:", phone);
     console.log("Password:", password);
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style={"dark"} />
-      <Image source={imagePath.signUp} style={styles.ImageHeader} />
-      <Text style={styles.textHeader}>Sign Up</Text>
-      <View style={styles.body}>
-        <Text style={styles.textBody}>
-          Silahkan Sign Up untuk melanjutkan Sign In
-        </Text>
-        <View style={styles.columBody}>
-          <TextInput
-            placeholder="Username"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            value={email}
-            onChangeText={setEmail}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.columBody}>
-          <TextInput
-            placeholder="No Telepon"
-            keyboardType="number-pad"
-            value={phone}
-            onChangeText={setPhone}
-            style={styles.textInput}
-          />
-        </View>
-        <View style={styles.columBody}>
-          <TextInput
-            placeholder="Password"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={setPassword}
-            style={styles.textInput}
-          />
+
+      {/* header */}
+      <View style={styles.header}>
+        <View style={styles.frameHeader}>
+          <TouchableOpacity
+            onPress={() => {
+              router.back();
+            }}>
+            <Feather
+              name="arrow-left"
+              size={24}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+          <View style={styles.frameSignUp}>
+            <Text style={styles.textSignUp}>Sign Up</Text>
+          </View>
         </View>
       </View>
-      <TouchableOpacity 
-      onPress={() => {
-        router.push("/(auth)/signin");
-      }}
-      style={styles.footer}>
-        <Text style={styles.textFooter}>Sign Up</Text>
-      </TouchableOpacity>
+
+      {/* body */}
+      <View style={styles.body}>
+        <View style={styles.frameInput}>
+          <View style={styles.frameText}>
+            <Text>Username</Text>
+          </View>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="Username"
+              autoCapitalize="none"
+              value={username}
+              onChangeText={setUsername}
+              style={styles.textInput}
+            />
+          </View>
+          <View style={styles.frameText}>
+            <Text>Email</Text>
+          </View>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="Email"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              value={email}
+              onChangeText={setEmail}
+              style={styles.textInput}
+            />
+          </View>
+          <View style={styles.frameText}>
+            <Text>Password</Text>
+          </View>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="Password"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+              style={styles.textInput}
+            />
+          </View>
+          <View style={styles.frameText}>
+            <Text>confirm Password</Text>
+          </View>
+          <View style={styles.input}>
+            <TextInput
+              placeholder="Confirm Password"
+              value={confirmpassword}
+              onChangeText={setConfirmPassword}
+              secureTextEntry={true}
+              style={styles.textInput}
+            />
+          </View>
+        </View>
+        <View style={styles.buttom}>
+        <TouchableOpacity 
+          onPress={() => {
+            router.replace('/(auth)/signin')
+          }}
+          style={styles.buttomSignUp}>
+            <Text style={styles.textButtom}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
@@ -77,50 +119,82 @@ export default SignUpScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#3CB5F2",
+    backgroundColor: "#04616E",
   },
-  ImageHeader: {
-    marginTop: 50,
+  header: {
+    flex: 0.1,
   },
-  textHeader: {
-    fontSize: 36,
-    marginLeft: 20,
-    color: "#FFFFFF",
+  frameHeader: {
+    height: 50,
+    width: "85%",
+    marginHorizontal: "auto",
+    flexDirection: "row",
+  },
+  icon: {
+    width: 30,
+    height: 30,
+    marginVertical: "auto",
+  },
+  frameSignUp: {
+    height: 50,
+    width: 200,
+    justifyContent: "center",
+    marginHorizontal: "auto",
+  },
+  textSignUp: {
+    fontSize: 20,
+    marginLeft: 50,
+    color: "white",
+    fontWeight: "bold",
   },
   body: {
+    flex: 0.9,
+    backgroundColor: "#F0F0F0",
+    borderTopLeftRadius: 50,
+  },
+  frameInput: {
+    height: 300,
     width: "90%",
     marginHorizontal: "auto",
-    marginTop: 5,
+    marginTop: 30,
   },
-  textBody: {
-    fontSize: 13,
-    color: "#FFFFFF",
-  },
-  columBody: {
-    height: 50,
-    width: "80%",
-    borderWidth: 1,
+  frameText: {
+    height: 40,
+    width: 300,
     marginHorizontal: "auto",
-    marginTop: 15,
+    justifyContent: "center",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  input: {
+    height: 40,
+    width: 300,
+    marginHorizontal: "auto",
+    backgroundColor: "#FFFFF",
+    borderWidth: 0.3,
     borderRadius: 10,
   },
   textInput: {
-    marginVertical: "auto",
-    width: "80%",
+    height: 40,
+    width: "90%",
     marginHorizontal: "auto",
   },
-  footer: {
-    width: "80%",
-    height: 50,
-    marginHorizontal: "auto",
-    marginTop: 50,
-    borderWidth: 1,
-    borderRadius: 20,
+  buttom:{
+    height:150,
+    width:300,
+    marginHorizontal:'auto',
+    marginTop:150
   },
-  textFooter:{
+  buttomSignUp:{
+    height:50,
+    width:300,
+    backgroundColor:'#04616E',
+    borderRadius:50,
+    justifyContent:'center'
+  },
+  textButtom:{
     fontSize:16,
-    textAlign:"center",
-    marginVertical:"auto",
-    color:"#FFFFFF"
-  }
+    textAlign:'center',
+    color:'white'
+  },
 });

@@ -1,134 +1,174 @@
-import { StyleSheet, Text, View,SafeAreaView, TouchableOpacity } from 'react-native'
-import React from 'react'
-import Octicons from '@expo/vector-icons/Octicons';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React from "react";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
-const HomeScreen = () => {
+const home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header */}
+      <StatusBar barStyle={"dark-content"} />
+
+      {/* header */}
       <View style={styles.header}>
-        <View style={styles.columHeader}>
-          <Text style={styles.textHeader}>SEKOLAH ID</Text>
+        <View style={styles.frame}>
+          <TouchableOpacity>
+            <MaterialIcons
+              name="filter-list"
+              size={30}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
+          <Text style={styles.textHeader}>Menu</Text>
+          <TouchableOpacity>
+            <MaterialIcons
+              name="notifications-none"
+              size={30}
+              color="white"
+              style={styles.icon}
+            />
+          </TouchableOpacity>
         </View>
-        <View>
-          <Text style={styles.hello}>Hallo</Text>
-        </View>
-        <View>
-          <Text style={styles.nama}>Nama Siswa</Text>
+        <View style={styles.cari}>
+          <AntDesign
+            name="search1"
+            size={24}
+            color="#D9D9D9"
+            style={styles.icon}
+          />
+          <View style={styles.frameCari}>
+            <TextInput 
+            placeholder="Cari apalah"
+            style={styles.textCari} />
+          </View>
         </View>
       </View>
 
       {/* Body */}
       <View style={styles.body}>
-        <View style={styles.colum}>
-        <TouchableOpacity style={styles.columbody}>
-          <View style={styles.columStyle}>
-          <Octicons name="checklist" size={50} color="black" 
-          style={styles.icon}
-          />
-          </View>
-          <Text style={styles.textColum}>Absensi</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.columbody}>
-        <View style={styles.columStyle}>
-        <MaterialCommunityIcons name="microsoft-sharepoint" size={50} color="black"
-          style={styles.icon}
-          />
-          </View>
-          <Text style={styles.textColum}>Nilai</Text>
-        </TouchableOpacity>
+        <View style={styles.frameFitur}>
+          <Text style={styles.textFitur}>Fitur</Text>
         </View>
-        <View style={styles.colum}>
-        <TouchableOpacity style={styles.columbody}>
-        <View style={styles.columStyle}>
-        <FontAwesome5 name="chalkboard-teacher" size={50} color="black"
-          style={styles.icon}
-          />
-          </View>
-          <Text style={styles.textColum}>Guru</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.columbody}>
-        <View style={styles.columStyle}>
-        <FontAwesome5 name="clipboard-list" size={50} color="black"          style={styles.icon}
-          />
-          </View>
-          <Text style={styles.textColum}>Jadwal</Text>
-        </TouchableOpacity>
+        <View style={styles.columFitur}>
+          <TouchableOpacity style={styles.fitur}>
+            <View style={styles.fiturButtom}>
+            </View>
+            <Text style={styles.textButtomFitur}>ABSENSI</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.fitur}>
+            <View style={styles.fiturButtom}>
+            </View>
+            <Text style={styles.textButtomFitur}>NILAI</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.fitur}>
+            <View style={styles.fiturButtom}>
+            </View>
+            <Text style={styles.textButtomFitur}>GURU</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.fitur}>
+            <View style={styles.fiturButtom}>
+            </View>
+            <Text style={styles.textButtomFitur}>JADWAL</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default home;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#04616E",
   },
-  header:{
-    height:200,
-    width:"100%",
-    backgroundColor:"#375E97",
-    borderBottomLeftRadius:50,
-    borderBottomRightRadius:50
+  header: {
+    flex: 0.2,
   },
-  columHeader:{
-    height:50,
-    width:300,
-    marginTop:30,
-    marginHorizontal:'auto'
+  frame: {
+    height: 50,
+    width: "90%",
+    marginHorizontal: "auto",
+    marginTop: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  textHeader:{
-    fontSize:20,
-    fontWeight:"600",
-    textAlign:"center",
-    marginVertical:"auto",
-    color:"#FFFFFF"
+  icon: {
+    height: 30,
+    width: 30,
+    marginVertical: "auto",
+    marginHorizontal: 10,
   },
-  hello:{
-    fontSize:15,
-    color:"#FFFFFF",
-    marginLeft:20
+  textHeader: {
+    fontSize: 16,
+    marginVertical: "auto",
+    color:'white'
   },
-  nama:{
-    fontSize:20,
-    color:"#FFFFFF",
-    marginLeft:20
+  cari: {
+    height: 40,
+    width: 300,
+    marginTop: 10,
+    marginHorizontal: "auto",
+    borderRadius: 10,
+    flexDirection: "row",
+    borderWidth:0.3
+  },
+  frameCari: {
+    height: 40,
+    width: 250,
+  },
+  textCari: {
+    fontSize: 15,
+    marginVertical: "auto",
+    marginLeft: 10,
   },
   body:{
-    width:"90%",
+    flex:0.8,
+    backgroundColor:'#F0F0F0',
+    borderTopLeftRadius:50
+  },
+  frameFitur:{
+    height:30,
+    width:300,
     marginTop:20,
-    marginHorizontal:"auto",
-    gap:20
-
+    marginHorizontal:'auto'
   },
-  colum:{
-    marginHorizontal:"auto",
-    flexDirection:"row",
-    gap:20
+  textFitur:{
+    fontSize:16
   },
-  columbody:{
-    width:150,
-    height:150,
-    borderRadius:10,
-    borderWidth:1
+  columFitur:{
+    height:200,
+    width:350,
+    marginHorizontal:'auto',
+    flexDirection:'row'
   },
-  columStyle:{
-    height:50,
-    width:50,
-    marginVertical:"auto",
-    marginHorizontal:"auto"
+  fitur:{
+    height:100,
+    width:80,
+    borderWidth:0.5,
+    marginHorizontal:'auto',
+    marginTop:20,
+    borderRadius:20
   },
-  icon:{
-    marginVertical:"auto",
-    marginHorizontal:"auto"
+  fiturButtom:{
+    height:100,
+    width:80,
+    borderRadius:20
   },
-  textColum:{
-    fontSize:20,
-    fontWeight:"700",
-    textAlign:"center",
+  textButtomFitur:{
+    fontSize:16,
+    textAlign:'center',
+    marginVertical:'auto',
+    fontWeight:'bold',
+    marginTop:5
   }
-})
+});

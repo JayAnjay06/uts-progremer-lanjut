@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingVertical: 50,
+    backgroundColor:'#04616E'
   },
 
   body: {
@@ -67,6 +68,7 @@ const styles = StyleSheet.create({
   textImage: {
     fontSize: 20,
     fontWeight: "400",
+    color:'#fffff'
   },
   footer: {
     height: 50,
@@ -77,17 +79,20 @@ const styles = StyleSheet.create({
   },
   textIndicator:{
     fontSize:15,
-    fontWeight:"bold"
+    fontWeight:"bold",
+    color:'#fffff'
+
   },
   textFooter: {
     fontSize: 12,
     fontWeight: "300",
     textAlign: "center",
-    color: "#867373",
+    color: "#fffff",
   },
   textMahasiswa: {
     fontSize: 15,
     textAlign: "center",
     color: "#fffff",
+    
   },
 });
