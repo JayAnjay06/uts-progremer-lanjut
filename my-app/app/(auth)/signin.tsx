@@ -1,189 +1,133 @@
-import {
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
-import React, { useState } from "react";
-import imagePath from "@/constans/imagePath";
-import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { ImageBackground, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import React from 'react'
+import imagePath from '@/constans/imagePath'
+import { router } from 'expo-router'
 
-const SignInScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-  };
-
+export default function SignInPages() {
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style={"dark"} />
+      <StatusBar barStyle={'dark-content'}/>
+      <ImageBackground source={imagePath.bg} style={styles.bg}>
 
-      {/* header */}
-      <View style={styles.header}>
-        <View style={styles.headerImage}>
-          <Image source={imagePath.icon} style={styles.imageHeader} />
-        </View>
-      </View>
+        {/* header */}
+        <View style={styles.header}></View>
 
-      {/* body */}
-      <View style={styles.body}>
-        <View style={styles.frameSignIn}>
-          <Text style={styles.textSignIn}>Sign In</Text>
+        {/* body */}
+        <View style={styles.body}>
+          <View style={styles.content}>
+            <View style={styles.frame}>
+              <Text style={styles.textSilahkan}>Silahkan Login Ke Akun Anda</Text>
+            </View>
+            <View style={styles.frameInput}>
+              <TextInput style={styles.input}
+              placeholder='Email Address'
+              />
+            </View>
+            <View style={styles.frameInput}>
+              <TextInput style={styles.input}
+              placeholder='Password'
+              />
+            </View>
+            <TouchableOpacity style={styles.framelupa}>
+              <Text style={styles.textLupa}>Lupa Password</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+                        onPress={() => {
+                          router.push('/(tabs)/home')
+                        }}
+            style={styles.buttom}>
+              <Text style={styles.textSigIn}>Sign In</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity 
+            onPress={() => {
+              router.push('/SignUp')
+            }}
+            style={styles.frameBuat}>
+              <Text style={styles.textBuat}>Buat Akun Anda !!!</Text>
+            </TouchableOpacity>
+
+          </View>
         </View>
-        <View style={styles.frameInput}>
-          <View style={styles.frameText}>
-            <Text>Email</Text>
-          </View>
-          <View style={styles.input}>
-            <TextInput
-              placeholder="Username"
-              keyboardType="email-address"
-              autoCapitalize="none"
-              value={email}
-              onChangeText={setEmail}
-              style={styles.textInput}
-            />
-          </View>
-          <View style={styles.frameText}>
-            <Text>Password</Text>
-          </View>
-          <View style={styles.input}>
-            <TextInput
-              placeholder="Password"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry={true}
-              style={styles.textInput}
-            />
-          </View>
-          <TouchableOpacity style={styles.frameLupa}>
-            <Text style={styles.textLupa}>Lupa Password</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttom}>
-          <TouchableOpacity 
-          onPress={() => {
-            router.replace('/(root)/(tabs)/home')
-          }}
-          style={styles.buttomSignIn}>
-            <Text style={styles.textButtom}>Sign In</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-          onPress={() => {
-            router.push('/(auth)/signup')
-          }}
-          >
-            <Text style={styles.text}>Buat akun Anda</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+
+      </ImageBackground>
     </SafeAreaView>
-  );
-};
-
-export default SignInScreen;
+  )
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#04616E",
+  container:{
+    flex:1,
   },
-  header: {
-    flex: 0.3,
+  bg:{
+    flex:1,
   },
-  headerImage: {
-    height: 100,
-    width: 100,
-    marginHorizontal: "auto",
-    marginVertical: "auto",
+  header:{
+    flex:0.4,
   },
-  imageHeader: {
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    borderTopLeftRadius: 20,
+  body:{
+    flex:0.6,
   },
-
-  body: {
-    flex: 0.7,
-    backgroundColor: "#F0F0F0",
-    borderTopRightRadius: 50,
-  },
-  frameSignIn: {
-    width: 250,
-    height: 50,
-    marginTop: 30,
-    marginHorizontal: "auto",
-  },
-  textSignIn: {
-    fontSize: 24,
-    color: "#828282",
-    textAlign: "center",
-  },
-  frameText: {
-    height: 40,
-    width: 300,
-    justifyContent: "center",
-    marginHorizontal: "auto",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  frameInput: {
-    height: 250,
-    width: 300,
-    marginHorizontal: "auto",
-    marginTop: 50,
-  },
-  input: {
-    height: 40,
-    width: 300,
-    marginHorizontal: "auto",
-    backgroundColor: "#FFFFF",
-    borderWidth: 0.3,
-    borderRadius: 10,
-  },
-  textInput: {
-    height: 40,
-    width: "90%",
-    marginHorizontal: "auto",
-  },
-  frameLupa:{
-    height:30,
+  content:{
+    height:300,
     width:300,
+    marginHorizontal:'auto',
+    marginTop:10,
+  },
+  frame:{
+    height:60,
+    width:300,
+    marginTop:10,
+    justifyContent:'center'
+  },
+  frameInput:{
+    height:50,
+    width:250,
+    borderWidth:0.5,
+    marginHorizontal:'auto',
+    marginTop:10,
+    borderRadius:10
+  },
+  textSilahkan:{
+    fontSize:16,
+    textAlign:'center'
+  },
+  input:{
+    height:50,
+    width:220,
+    marginHorizontal:'auto',
+  },
+  framelupa:{
+    height:50,
+    width:250,
+    marginHorizontal:'auto',
     marginTop:5
   },
   textLupa:{
     fontSize:12,
-    textAlign:'right',
-    justifyContent:'center'
+    textAlign:'right'
   },
   buttom:{
     height:50,
-    width:300,
-    marginHorizontal:'auto'
+    width:250,
+    marginHorizontal:'auto',
+    marginTop:5,
+    backgroundColor:'#34bdeb',
+    justifyContent:'center',
+    borderRadius:10
   },
-  buttomSignIn:{
-    height:50,
-    width:300,
-    backgroundColor:'#04616E',
-    borderRadius:50,
-    justifyContent:'center'
-  },
-  textButtom:{
+  textSigIn:{
     fontSize:16,
-    textAlign:'center',
-    color:'white'
+    textAlign:'center'
   },
-  text:{
+  frameBuat:{
+    height:50,
+    width:250,
+    marginHorizontal:'auto',
+    marginTop:80
+  },
+  textBuat:{
     fontSize:12,
-    textAlign:'center',
-    marginTop:20,
-    color:'blue'  
-  }
-});
+    textAlign:'center'
+  },
+})
