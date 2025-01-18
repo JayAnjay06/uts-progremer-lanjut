@@ -1,3 +1,3 @@
 export default {
-    bg:require("@/assets/images/bg.webp"),
+    bg:require("../assets/images/bg.webp"),
 }

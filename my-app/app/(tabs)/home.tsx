@@ -1,204 +1,164 @@
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Octicons from "@expo/vector-icons/Octicons";
-import { router } from "expo-router";
+import { SafeAreaView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { router } from 'expo-router';
+import ModalSiswaPages from 'components/modalSiswa';
+import KelasModalPages from 'components/modalKelas';
+import ModalGuruPages from 'components/modalGuru';
 
 const HomePages = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   return (
-    <ScrollView style={styles.container}>
-      <StatusBar barStyle={"dark-content"} />
-
-      {/* header */}
-      <View style={styles.header}>
-        <View style={styles.frameNamaSekolah}>
-          <Text style={styles.textNamaSekolah}>NAMA SEKOLAH</Text>
+    <SafeAreaView style={styles.container}>
+      <StatusBar barStyle={'dark-content'} />
+      <View style={styles.frameTotal}>
+        <View style={styles.frameTotalSemua}>
+          <Text style={styles.textTotalSemua}>Jumlah Siswa</Text>
+          <Text style={styles.textTotalSemua}>50</Text>
+        </View>
+        <View style={styles.frameTotalSemua}>
+          <Text style={styles.textTotalSemua}>Jumlah Kelas</Text>
+          <Text style={styles.textTotalSemua}>10</Text>
+        </View>
+        <View style={styles.frameTotalSemua}>
+          <Text style={styles.textTotalSemua}>Jumlah Guru</Text>
+          <Text style={styles.textTotalSemua}>20</Text>
         </View>
       </View>
 
-      {/* body */}
-      <View style={styles.body}>
-        <View style={styles.frameBody}>
-          <TouchableOpacity
-            onPress={() => {
-              router.push("/(pages)/siswa");
-            }}
-            style={styles.frameData}>
-            <Text style={styles.textData}>Data Siswa</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              router.push("/(pages)/guru");
-            }}
-            style={styles.frameData}>
-            <Text style={styles.textData}>Data Guru</Text>
+      {/* React-Native-Modal */}
+      <View style={styles.frameTambah}>
+      <View style={styles.bouttom}>
+          <TouchableOpacity style={styles.bouttom} onPress={toggleModal}>
+            <Text style={styles.textTambah}>Tambahkan Siswa</Text>
+            <ModalSiswaPages isVisible={isModalVisible} onClose={toggleModal} />
           </TouchableOpacity>
         </View>
-        <View style={styles.frameColum}>
-          <TouchableOpacity style={styles.frameColumData}>
-            <Text style={styles.textData}>Jadwal</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.frameColumData}>
-            <Text style={styles.textData}>Mapel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.frameColumData}>
-            <Text style={styles.textData}>Absensi</Text>
+      <View style={styles.bouttom}>
+          <TouchableOpacity style={styles.bouttom} onPress={toggleModal}>
+            <Text style={styles.textTambah}>Tambahkan Kelas</Text>
+            <KelasModalPages isVisible={isModalVisible} onClose={toggleModal} />
           </TouchableOpacity>
         </View>
-        <View style={styles.frameInfo}>
-          <Text style={styles.textData}>Semua Informasi</Text>
+      <View style={styles.bouttom}>
+          <TouchableOpacity style={styles.bouttom} onPress={toggleModal}>
+            <Text style={styles.textTambah}>Tambahkan Guru</Text>
+            <ModalGuruPages isVisible={isModalVisible} onClose={toggleModal} />
+          </TouchableOpacity>
         </View>
       </View>
 
-      {/* footer */}
-      <View style={styles.footer}>
-        <View style={styles.frameSemua}>
-          <Text style={styles.textSemua}>Lihat semua</Text>
-        </View>
-        <TouchableOpacity style={styles.frameBerita}>
-          <Text style={styles.textBerita}>Semua Berita Yang Ada</Text>
+      {/* SideBar Menu */}
+      <View style={styles.sidebar}>
+        <TouchableOpacity style={styles.tabsBottom}
+          onPress={() => {
+            router.push("/(pages)/siswa");
+          }}
+        >
+          <Text style={styles.textSidebar}>Siswa</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.frameBerita}>
-          <Text style={styles.textBerita}>Semua Berita Yang Ada</Text>
+        <TouchableOpacity style={styles.tabsBottom}
+          onPress={() => {
+            router.push("/(pages)/kelas");
+          }}
+        >
+          <Text style={styles.textSidebar}>Kelas</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.frameBerita}>
-          <Text style={styles.textBerita}>Semua Berita Yang Ada</Text>
+        <TouchableOpacity style={styles.tabsBottom}
+          onPress={() => {
+            router.push("/(pages)/guru");
+          }}
+        >
+          <Text style={styles.textSidebar}>Guru</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.frameBerita}>
-          <Text style={styles.textBerita}>Semua Berita Yang Ada</Text>
+        <TouchableOpacity style={styles.tabsBottom}
+          onPress={() => {
+            router.push("/(pages)/mapel");
+          }}
+        >
+          <Text style={styles.textSidebar}>Mapel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.tabsBottom}
+          onPress={() => {
+            router.push("/(pages)/nilai");
+          }}
+        >
+          <Text style={styles.textSidebar}>Nilai</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
-  );
-};
+    </SafeAreaView>
+  )
+}
 
-export default HomePages;
+export default HomePages
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  header: {
-    height: 100,
-    width: "100%",
-    backgroundColor: "#34d5eb",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
-  frameNamaSekolah: {
-    height: 100,
-    width: "90%",
-    marginHorizontal: "auto",
-    marginTop: 10,
-    justifyContent: "center",
-  },
-  textNamaSekolah: {
-    fontSize: 20,
-    color: "#fff",
-    textAlign: "center",
-  },
-  frameMoto: {
-    height: 40,
-    width: "90%",
-    marginHorizontal: "auto",
-    marginTop: 10,
-    justifyContent: "center",
-  },
-  textMoto: {
-    fontSize: 16,
-    color: "#fff",
-    textAlign: "center",
-  },
-
-  // body
-  body: {
-    height: 400,
-    width: "95%",
-    marginTop: 5,
-    marginHorizontal: "auto",
-  },
-  frameBody: {
-    height: 100,
-    width: "95%",
-    marginHorizontal: "auto",
-    marginTop: 5,
-    borderRadius: 10,
-    flexDirection: "row",
-  },
-  frameData: {
-    height: 80,
-    width: 150,
-    backgroundColor: "white",
-    marginVertical: "auto",
-    borderRadius: 10,
-    justifyContent: "center",
-    marginHorizontal: "auto",
-  },
-  textData: {
-    fontSize: 16,
-    textAlign: "center",
-  },
-  frameColum: {
-    height: 80,
-    width: "100%",
-    marginHorizontal: "auto",
-    marginTop: 15,
-    flexDirection: "row",
-  },
-  frameColumData: {
-    height: 80,
-    width: 100,
-    backgroundColor: "white",
-    marginVertical: "auto",
-    borderRadius: 10,
-    justifyContent: "center",
-    marginHorizontal: "auto",
-  },
-  frameInfo: {
+  frameTotal: {
+    width: '100%',
     height: 150,
-    width: "95%",
-    backgroundColor: "white",
-    marginVertical: "auto",
-    borderRadius: 10,
-    justifyContent: "center",
-    marginHorizontal: "auto",
+    marginTop: 10,
+    flexDirection: 'row',
+    gap: 2,
   },
-
-  // footer
-  footer: {
-    height: "100%",
-    width: "100%",
-    backgroundColor: "white",
-    gap: 10,
-  },
-  frameSemua: {
+  frameTotalSemua: {
     height: 50,
-    width: 350,
-    marginHorizontal: "auto",
-    justifyContent: "center",
+    width: 110,
+    marginVertical: 'auto',
+    marginHorizontal: 'auto',
+    borderWidth: 0.4,
+    borderRadius: 10
   },
-  textSemua: {
+  textTotalSemua: {
     fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold'
   },
-  frameBerita: {
-    height: 200,
-    width: 350,
-    marginHorizontal: "auto",
-    justifyContent: "center",
+  frameTambah: {
+    height: 70,
+    width: 320,
+    marginHorizontal: 'auto',
+    marginTop: 5,
+    flexDirection: 'row',
+    gap: 10
+  },
+  bouttom: {
+    width: 100,
+    height: 50,
+    marginVertical: 'auto',
+    justifyContent: 'center',
+    alignContent: 'center',
     borderWidth: 0.5,
-    borderRadius: 20,
+    borderRadius: 5
   },
-  textBerita: {
+  textTambah: {
     fontSize: 16,
-    textAlign: "center",
+    textAlign: 'center',
+    justifyContent: 'center'
   },
-});
+  sidebar: {
+    width: '100%',
+    height: 50,
+    marginHorizontal: 'auto',
+    marginTop: 380,
+    flexDirection: 'row',
+    gap: 2
+  },
+  tabsBottom: {
+    height: 40,
+    width: 70,
+    justifyContent: 'center',
+    marginVertical: 'auto'
+  },
+  textSidebar: {
+    fontSize: 16,
+    textAlign: 'center',
+    justifyContent: 'center',
+    fontWeight: '500'
+  }
+})

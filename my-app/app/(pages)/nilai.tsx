@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const SiswaPages = () => {
+const NilaiPages = () => {
   return (
     <View>
-      <Text>SiswaPages</Text>
+      <Text>NilaiPages</Text>
     </View>
   )
 }
 
-export default SiswaPages
+export default NilaiPages
 
 const styles = StyleSheet.create({})

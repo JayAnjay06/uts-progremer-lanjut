@@ -1,6 +1,6 @@
 import { ImageBackground, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React from 'react'
-import imagePath from '@/constans/imagePath'
+import imagePath from '../../constans/imagePath'
 import { router } from 'expo-router'
 
 export default function SignInPages() {
